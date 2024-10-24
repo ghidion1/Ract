@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 5</title>
+</head>
+<body>
+    <script type="module">
+        //Promisiuni
+        const prom = new Promise((res, rej)=>{
+            let stare = true;
+            if(stare){
+                res('Succes');
+            }else{
+                rej('Eroare');
+            }
+        });
+        prom.then()
+            .catch()
+            .finally();
+    </script>
+</body>
+</html>

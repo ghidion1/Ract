@@ -1,0 +1,29 @@
+.container{
+    width: 80%;
+    margin: 100px auto;
+    border: 1px solid #00000015;
+    padding: 1rem;
+}
+#users{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+#users > .user{
+    box-shadow: 0 0 2px lightgrey;
+    padding: 1rem;
+    min-width: 150px;
+    flex: 1 1 calc(200px - 20px);
+}
+.users > img{
+    width: 100%;
+}
+.user p{
+    overflow: hidden;
+}
+.user:hover{
+    transition: all ease 0.9s;
+    box-shadow: 0 0 2px #00000055, 0 0 4px #00000055!important;
+    cursor: pointer;
+    transform: translateY(2px);
+}

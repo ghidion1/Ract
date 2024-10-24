@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 2</title>
+</head>
+<body>
+    <script>
+        let animal = {
+            mananca: true,
+            alearga() {
+                console.log('Alearga');
+            }
+        }
+
+        let caine = Object.create(animal);
+        console.log(caine.mananca);
+        console.log(caine);
+        // Functii
+        // const salut = () => {
+        //     return () => console.log('Salut 3');
+        // }
+        
+        // // (() => {console.log('Salut 2')})();
+
+        // console.log(salut()());
+        // Obiecte functie
+        function Caine (nume) {
+            this.nume = nume;
+        }
+
+        let rex = new Caine('Rex');
+
+        console.log(rex);
+        console.log(rex.nume);
+
+        Caine.prototype.alearga = function(){
+            console.log("Alearga");
+        }
+
+        let puf = new Caine('Puf');
+        puf.alearga();
+    </script>
+</body>
+</html>

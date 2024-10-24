@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probleme</title>
+    <style>
+        .card{
+            border: 1px solid black; padding: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Restaurant</h1>
+    <div id="meniu"></div>
+    <script>
+        const meniu = [
+            {id: 1, nume: "Cola", pret: 28},
+            {id: 2, nume: "Intelligent Wooden Sausages", pret: 887.00},
+            {id: 3, nume: "Unbranded Metal Towels", pret: 370.00},
+            {id: 4, nume: "Ergonomic Wooden Car", pret: 526.00},
+            {id: 5, nume: "Fantastic Wooden Soap", pret: 634.00},
+            {id: 6, nume: "Incredible Concrete Table", pret: 231.00},
+            {id: 7, nume: "Refined Plastic Gloves", pret: 696.00},
+            {id: 8, nume: "Incredible Rubber Bacon", pret: 838.00},
+        ]
+        let meniuElement = document.querySelector("#meniu");
+        meniu.forEach( produs => {
+            meniuElement.innerHTML += `<div class="card">
+                <p><b>Nume:</b>${produs.nume}</p>
+                <p><b>Pret:</b>${produs.pret}</p>
+            </div>`;
+        });
+    </script>
+</body>
+</html>

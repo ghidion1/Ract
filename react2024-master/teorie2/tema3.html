@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tema 3</title>
+</head>
+<body>
+    <script>
+        Array.prototype.firstElement = function() {
+            return this[0];
+        }
+
+        const numere = [12, 32, 24, 1000];
+        console.log( numere.firstElement() );
+
+        function User (nume) {
+            this.nume = nume;
+        }
+
+        User.prototype.salut = function(){
+            console.log(`Salut, numele meu este ${this.nume}`);
+        }
+
+        const ana = new User("Ana");
+        ana.salut();
+        
+    </script>
+</body>
+</html>

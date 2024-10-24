@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Books</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Books</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- Main -->
+    <div class="container">
+        <div class="row">
+            <div class="col-6 m-auto">
+                <h5 class="mt-4">Adauga o carte</h5>
+                <form action="#" method="post" id="add-book">
+                    <div class="mb-3">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="title" class="form-control form-control-sm" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="author">Author</label>
+                        <input type="text" name="author" id="author" class="form-control form-control-sm" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pages">Pages</label>
+                        <input type="number" name="pages" id="pages" class="form-control form-control-sm" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description">Description</label>
+                        <textarea name="description" id="description" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-dark btn-sm">Save</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h5>List books</h5>
+                <table class='table table-bordered'>
+                    <thead>
+                        <tr class="table-dark">
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Author</th>
+                            <th>Pages</th>
+                            <th>Description</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody id="books"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const URL = "http://localhost:3000/books";
+        const addBookElement = document.querySelector("#add-book");
+        const getAllBooks = async () => {
+            const response = await fetch(URL);
+            const books = await response.json();
+            return books;
+        }
+        const main = async () => {
+            const booksElement = document.querySelector("#books");
+            booksElement.innerHTML = `<div class="spinner-grow" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>`;
+            const books = await getAllBooks();
+            booksElement.innerHTML = ``;
+            books.map((book, index) => {
+                booksElement.innerHTML += `<tr>
+                    <td>${index + 1}</td>
+                    <td>${book.title}</td>
+                    <td>${book.author}</td>
+                    <td>${book.pages}</td>
+                    <td>${book.description}</td>
+                    <td>
+                        <a href='#' class='btn btn-danger btn-sm'>Sterge</a>
+                    </td>
+                </tr>`;
+            });
+        }
+        addBookElement.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const book = {
+                "id": await Date.now().toString(36),
+                "title": addBookElement.title.value,
+                "author": addBookElement.author.value,
+                "pages": addBookElement.pages.value,
+                "description": addBookElement.description.value
+            }
+            const response = await fetch(URL, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                method: "POST",
+                body: JSON.stringify(book)
+            });
+            main();
+        });
+        main();
+    </script>
+</body>
+
+</html>

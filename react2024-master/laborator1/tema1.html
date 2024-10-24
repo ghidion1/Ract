@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problema 4, Pag. 83</title>
+</head>
+<body>
+
+    <form action="#" method="post">
+        <input type="email" name="email" id="email" required>
+        <button type="submit">Save</button>
+    </form>
+    
+    <script>
+        const user = {
+            nume: "John Doe",
+            email: "jd@gmail.com",
+            telefon: "078787878",
+            dataNasterii: "01.09.2000"
+        }
+        const dateDeIntrare = {
+            nume: prompt('Scrie numele:'),
+            email: prompt('Scrie email-ul:'),
+            telefon: prompt('Scrie telefonul:'),
+            dataNasterii: prompt('Scrie data nasterii:'),
+        }
+        if( user.nume != dateDeIntrare.nume ){
+            alert('Nume inexistent!');
+            dateDeIntrare.nume = prompt('Scrie numele:');
+        }
+        if( user.email != dateDeIntrare.email ){
+            alert('Email inexistent!');
+            dateDeIntrare.email = prompt('Scrie email-ul:');
+        }
+        if( user.telefon != dateDeIntrare.telefon ){
+            alert('Telefon inexistent!');
+            dateDeIntrare.telefon = prompt('Scrie telefonul:');
+        }
+        if( user.dataNasterii != dateDeIntrare.dataNasterii ){
+            alert('Data nasterii incorecta!');
+            dateDeIntrare.dataNasterii = prompt('Scrie data nasterii:');
+        }
+        console.log(user);
+    </script>
+</body>
+</html>
